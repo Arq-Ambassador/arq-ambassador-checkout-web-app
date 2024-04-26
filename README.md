@@ -1,34 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛍️ **Ambassador Store Project** 
+## arq-ambassador-checkout-web-app
 
-## Getting Started
+En este proyecto se toma como base los repositorios de Antonio Papa para una tienda virtual y se le hacen cambios arquitectonicos con el fin de mejorar su disponibilidad ante fallas, simulando un despliegue de una tienda en linea real con alta resiliencia, alta disponibilidad y que soporte un alto nivel de tráfico.
 
-First, run the development server:
+Este repostorio corresponde al frontend del store. 
 
-```bash
+## Descripción Arquitectónica
+
+En esta arquitectura se consideran varios elementos principales:
+- FrontEnd: Dividido en 3 grandes proyectos: Store, Admin y Checkout.
+- Un API Gateway, que sirve de puente entre el front y los diferentes microservicios.
+- Un conjunto de microservicios, que cumplen las funciones de Autenticación, Manejo de Usuarios, Productos, Ordenes, Generación de Enlaces y Visualización de Rankings y un servicio core. Al igual que uno de soporte que envía los correos de confirmación y notificación.
+- Cada servicio contiene elementos necesarios para su funcionamiento, como workers, que se encargan de implementar los patrones de diseño estipulados. 
+
+## Integrantes
+
+- Andrés Mauricio Ayala Cardona.
+- Sebastian Patiño Betancur.
+- Sara Rodríguez Velásquez.
+
+## Docente
+
+👨‍🏫 Danny Andrés Salcedo Saldaña -  [Docente de EAFIT](https://www.linkedin.com/in/danny-andres-salcedo-salda%C3%B1a-0b07772a/?originalSubdomain=co)
+
+## Tecnologías Utilizadas
+
+📑 Lenguaje de Programación:
+- **TypeScript:** Extiende JavaScript con características de tipado estático opcional para ayudar a detectar errores y hacer que el código sea más robusto.
+
+🗂️ Frameworks y Librerías:
+- **React:** Biblioteca JavaScript para construir interfaces de usuario interactivas y rápidas.
+- **Next.js:** Framework de React de código abierto que permite construir fácilmente aplicaciones web con React. Proporciona características como renderizado del lado del servidor, generación de sitios estáticos, enrutamiento automático y preconfiguración del proyecto, lo que facilita el desarrollo de aplicaciones web modernas y rápidas.
+- **Redux:** Biblioteca para gestionar el estado de la aplicación en aplicaciones JavaScript, especialmente con interfaces basadas en React.
+- **Axios:** Cliente HTTP basado en promesas para realizar solicitudes desde el navegador o Node.js y manejar respuestas de manera eficiente.
+
+
+## Instalación
+
+Instrucciones paso a paso sobre cómo instalar y configurar el proyecto localmente.
+
+Correr localmente:
+```
+npm install
 npm run dev
-# or
-yarn dev
+```
+Crear un build
+```
+npm build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Uso
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Recuerde configurar todas las variables de entorno pertinentes para que pueda correr correctamente. 
+Para el despliegue actual se sigue un modelo de despliegue en Kubernetes, por lo cual los archivos de configuración estan orientados a esta tecnología.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Recursos Adicionales
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Proyectos originales:
+- 📌 Proyecto original de React frontend: https://github.com/antoniopapa/react-ambassador 
+- 📌 Proyecto original de Node backend: https://github.com/antoniopapa/node-ambassador
 
-## Learn More
+## Contacto
 
-To learn more about Next.js, take a look at the following resources:
+- Andrés Mauricio Ayala Cardona. amayalac@eafit.edu.co
+- Sebastian Patiño Betancur. spatinob1@eafit.edu.co
+- Sara Rodríguez Velásquez. srodriguev@eafit.edu.co
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+> [!NOTE]
+> Este proyecto se ha creado con fines netamente académicos, sin fines comerciales y con un propósito de aprendizaje.
