@@ -1,10 +1,11 @@
-import Layout from "../components/Layout";
-import {useRouter} from "next/router";
 import {SyntheticEvent, useEffect, useState} from "react";
+import {useRouter} from "next/router";
 import axios from "axios";
-import constants from "../constants";
 
 declare var Stripe;
+
+import Layout from "../components/Layout";
+import constants from "../constants";
 
 export default function Home() {
     const router = useRouter();
@@ -24,7 +25,7 @@ export default function Home() {
         if (code != undefined) {
             (
                 async () => {
-                    const {data} = await axios.get(`${constants.endpoint}/links/${code}`);
+                    const {data} = await axios.get(`${constants.ambassadorCoreServiceUrl}/links/${code}`);
 
                     setUser(data.user);
                     setProducts(data.products);
@@ -61,7 +62,7 @@ export default function Home() {
     const submit = async (e: SyntheticEvent) => {
         e.preventDefault();
 
-        const {data} = await axios.post(`${constants.endpoint}/orders`, {
+        const {data} = await axios.post(`${constants.ambassadorCoreServiceUrl}/orders`, {
             first_name,
             last_name,
             email,
@@ -73,7 +74,7 @@ export default function Home() {
             products: quantities
         });
 
-        const stripe = new Stripe(constants.stripe_key);
+        const stripe = new Stripe(constants.stripeKey);
 
         stripe.redirectToCheckout({
             sessionId: data.id
@@ -109,9 +110,9 @@ export default function Home() {
                                                 <h6 className="my-0">Quantity</h6>
                                             </div>
                                             <input type="number" min="0" defaultValue={0}
-                                                   className="text-muted form-control"
-                                                   style={{width: '65px'}}
-                                                   onChange={e => change(product.id, parseInt(e.target.value))}
+                                                className="text-muted form-control"
+                                                style={{width: '65px'}}
+                                                onChange={e => change(product.id, parseInt(e.target.value))}
                                             />
                                         </li>
                                     </div>
@@ -132,56 +133,54 @@ export default function Home() {
                                 <div className="col-sm-6">
                                     <label htmlFor="firstName" className="form-label">First name</label>
                                     <input type="text" className="form-control" id="firstName"
-                                           placeholder="First Name" required
-                                           onChange={e => setFirstName(e.target.value)}
+                                        placeholder="First Name" required
+                                        onChange={e => setFirstName(e.target.value)}
                                     />
                                 </div>
 
                                 <div className="col-sm-6">
                                     <label htmlFor="lastName" className="form-label">Last name</label>
                                     <input type="text" className="form-control" id="lastName"
-                                           placeholder="Last Name"
-                                           required
-                                           onChange={e => setLastName(e.target.value)}/>
+                                        placeholder="Last Name"
+                                        required
+                                        onChange={e => setLastName(e.target.value)}/>
                                 </div>
-
 
                                 <div className="col-12">
                                     <label htmlFor="email" className="form-label">Email</label>
                                     <input type="email" className="form-control" id="email"
-                                           placeholder="you@example.com" required
-                                           onChange={e => setEmail(e.target.value)}/>
+                                        placeholder="you@example.com" required
+                                        onChange={e => setEmail(e.target.value)}/>
                                 </div>
 
                                 <div className="col-12">
                                     <label htmlFor="address" className="form-label">Address</label>
                                     <input type="text" className="form-control" id="address"
-                                           placeholder="1234 Main St"
-                                           required
-                                           onChange={e => setAddress(e.target.value)}/>
+                                        placeholder="1234 Main St"
+                                        required
+                                        onChange={e => setAddress(e.target.value)}/>
                                 </div>
 
                                 <div className="col-md-5">
                                     <label htmlFor="country" className="form-label">Country</label>
                                     <input className="form-control" id="country" placeholder="Country"
-                                           onChange={e => setCountry(e.target.value)}
+                                        onChange={e => setCountry(e.target.value)}
                                     />
                                 </div>
 
                                 <div className="col-md-4">
                                     <label htmlFor="city" className="form-label">City</label>
                                     <input className="form-control" id="city" placeholder="City"
-                                           onChange={e => setCity(e.target.value)}
+                                        onChange={e => setCity(e.target.value)}
                                     />
                                 </div>
 
                                 <div className="col-md-3">
                                     <label htmlFor="zip" className="form-label">Zip</label>
                                     <input type="text" className="form-control" id="zip" placeholder="Zip"
-                                           onChange={e => setZip(e.target.value)}/>
+                                        onChange={e => setZip(e.target.value)}/>
                                 </div>
                             </div>
-
 
                             <hr className="my-4"/>
 

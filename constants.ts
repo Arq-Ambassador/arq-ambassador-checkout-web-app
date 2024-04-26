@@ -1,6 +1,9 @@
-const { ENDPOINT_API, STRIPE_KEY } = process.env;
+import dotenv from 'dotenv';
+dotenv.config();
+
+const { CORE_SERVICE_API_URL, STRIPE_KEY } = process.env;
 
 export default {
-    endpoint: `http://${ENDPOINT_API}`,
-    stripe_key: STRIPE_KEY
+    ambassadorCoreServiceUrl: CORE_SERVICE_API_URL,
+    stripeKey: STRIPE_KEY
 };

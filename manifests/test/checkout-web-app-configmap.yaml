@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: checkout-web-app
+  namespace: ambassador-test
+data:
+  CORE_SERVICE_API_URL : https://testazure.serviciosit.co/arq/api/checkout
