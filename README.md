@@ -49,12 +49,20 @@ Crear un build
 npm build
 ```
 
+<<<<<<< Updated upstream
 ## Uso
+=======
+Open [http://localhost:5000](http://localhost:5000) with your browser to see the result.
+>>>>>>> Stashed changes
 
 Recuerde configurar todas las variables de entorno pertinentes para que pueda correr correctamente. 
 Para el despliegue actual se sigue un modelo de despliegue en Kubernetes, por lo cual los archivos de configuración estan orientados a esta tecnología.
 
+<<<<<<< Updated upstream
 ## Recursos Adicionales
+=======
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:5000/api/hello](http://localhost:5000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+>>>>>>> Stashed changes
 
 Proyectos originales:
 - 📌 Proyecto original de React frontend: https://github.com/antoniopapa/react-ambassador 

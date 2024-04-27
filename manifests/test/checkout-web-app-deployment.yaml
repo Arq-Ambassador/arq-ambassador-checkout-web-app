@@ -4,7 +4,7 @@ metadata:
   name: checkout-web-app
   namespace: ambassador-test
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: checkout-web-app
@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: checkout-web-app
-        image: ayalamac/arq-ambassador-checkout-web-app:v1
+        image: ayalamac/arq-ambassador-checkout-web-app:v2
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
@@ -28,7 +28,7 @@ spec:
         - secretRef:
             name: checkout-web-app
         ports:
-        - containerPort: 80
+        - containerPort: 3000
         resources:
           requests:
             cpu: "250m"
@@ -36,11 +36,11 @@ spec:
           limits:
             cpu: "1"
             memory: "512Mi"
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 80
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 80
+        # readinessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 3000
+        # livenessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 3000
