@@ -1,0 +1,14 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: checkout-web-app-checkout
+  namespace: ambassador-test
+spec:
+  virtualhost:
+    fqdn: checkout.ambassadors.ink
+  routes:
+    - conditions:
+      - prefix: /
+      services:
+        - name: checkout-web-app
+          port: 80

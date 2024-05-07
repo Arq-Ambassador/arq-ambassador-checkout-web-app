@@ -6,6 +6,7 @@ declare var Stripe;
 
 import Layout from "../components/Layout";
 import constants from "../constants";
+import { coreService } from "../axios/hostsInstances";
 
 export default function Home() {
     const router = useRouter();
@@ -25,7 +26,7 @@ export default function Home() {
         if (code != undefined) {
             (
                 async () => {
-                    const {data} = await axios.get(`${constants.ambassadorCoreServiceUrl}/links/${code}`);
+                    const {data} = await coreService.get(`links/${code}`);
 
                     setUser(data.user);
                     setProducts(data.products);
@@ -62,7 +63,7 @@ export default function Home() {
     const submit = async (e: SyntheticEvent) => {
         e.preventDefault();
 
-        const {data} = await axios.post(`${constants.ambassadorCoreServiceUrl}/orders`, {
+        const {data} = await coreService.post(`orders`, {
             first_name,
             last_name,
             email,
@@ -74,7 +75,11 @@ export default function Home() {
             products: quantities
         });
 
-        const stripe = new Stripe(constants.stripeKey);
+        const SPK = 'pk_test_51P3dvERvKlWyhRDtF21EIXcMg74rqqqkQQMdOrymUpZFyyuJyVnHVe5sS23KJ0w8z6S3tgCodEtmji8DNp7goMo300f4fTnrxC'
+        const stripePrivateKey = constants.stripeKey ?? SPK;
+        console.log(`Usó el pk de : ${constants.stripeKey ? 'Secret' : 'Quemado'}`);
+
+        const stripe = new Stripe(stripePrivateKey);
 
         stripe.redirectToCheckout({
             sessionId: data.id

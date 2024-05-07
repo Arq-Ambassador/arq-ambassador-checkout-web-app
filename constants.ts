@@ -1,9 +1,9 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-const { CORE_SERVICE_API_URL, STRIPE_KEY } = process.env;
+const { CORE_SERVICE_API_URL, STRIPE_PK } = process.env;
 
 export default {
     ambassadorCoreServiceUrl: CORE_SERVICE_API_URL,
-    stripeKey: STRIPE_KEY
+    stripeKey: STRIPE_PK
 };

@@ -4,4 +4,4 @@ metadata:
   name: checkout-web-app
   namespace: ambassador-test
 data:
-  CORE_SERVICE_API_URL : http://www.ambassadors.ink/arq/core/api/checkout
+  CORE_SERVICE_API_URL : http://api.ambassadors.ink/core/api/checkout

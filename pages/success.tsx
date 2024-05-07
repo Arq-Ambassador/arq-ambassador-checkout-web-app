@@ -4,6 +4,7 @@ import React, {useEffect} from 'react';
 
 import constants from "../constants";
 import Layout from "../components/Layout";
+import { coreService } from "../axios/hostsInstances";
 
 const Success = () => {
     const router = useRouter();
@@ -13,7 +14,7 @@ const Success = () => {
         if (source !== undefined) {
             (
                 async () => {
-                    await axios.post(`${constants.ambassadorCoreServiceUrl}/orders/confirm`, {
+                    await coreService.post(`orders/confirm`, {
                         source
                     })
                 }
